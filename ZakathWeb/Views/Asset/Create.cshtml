@@ -1,0 +1,19 @@
+@model AssetRequest
+@{ ViewData["Title"] = "Add Asset"; }
+<div class="row justify-content-center"><div class="col-md-6"><div class="card"><div class="card-body">
+<h3 class="mb-4">Add Asset</h3>
+@if (ViewBag.Error != null) { <div class="alert alert-danger">@ViewBag.Error</div> }
+<form method="post">
+<div class="mb-3"><label>Name</label><input asp-for="AssetName" class="form-control" required /></div>
+<div class="mb-3"><label>Value</label><input asp-for="CurrentValue" type="number" step="0.01" class="form-control" required /></div>
+<div class="mb-3"><label>Purchase Date</label><input asp-for="PurchaseDate" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" required /></div>
+<div class="mb-3"><label>Category</label>
+<select asp-for="AssetCategoryId" class="form-select" required>
+<option value="">Select</option>
+@foreach (var cat in ViewBag.Categories as List<AssetCategoryModel>) {
+<option value="@cat.AssetCategoryId">@cat.CategoryNameEnglish</option>
+}
+</select></div>
+<button type="submit" class="btn btn-success">Save</button>
+<a href="/Asset" class="btn btn-secondary">Cancel</a>
+</form></div></div></div></div>

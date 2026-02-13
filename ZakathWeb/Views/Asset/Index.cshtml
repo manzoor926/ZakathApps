@@ -1,0 +1,17 @@
+@model List<AssetModel>
+@{ ViewData["Title"] = "Assets"; }
+<div class="d-flex justify-content-between mb-4">
+<h1>Assets</h1><a href="/Asset/Create" class="btn btn-info text-white"><i class="fas fa-plus me-2"></i>Add Asset</a>
+</div>
+<div class="card"><div class="card-body"><table class="table">
+<thead><tr><th>Name</th><th>Value</th><th>Category</th><th>Purchase Date</th><th>Zakath?</th><th>Actions</th></tr></thead>
+<tbody>
+@foreach (var item in Model) {
+<tr><td>@item.AssetName</td><td>@item.CurrentValue.ToString("C")</td>
+<td>@item.CategoryName</td><td>@item.PurchaseDate.ToShortDateString()</td>
+<td>@(item.IsZakathApplicable ? "Yes" : "No")</td>
+<td><form method="post" asp-action="Delete" asp-route-id="@item.AssetId" class="d-inline">
+<button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td></tr>
+}
+</tbody>
+</table></div></div>

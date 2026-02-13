@@ -1,0 +1,16 @@
+@model List<ExpenseModel>
+@{ ViewData["Title"] = "Expenses"; }
+<div class="d-flex justify-content-between mb-4">
+<h1>Expenses</h1><a href="/Expense/Create" class="btn btn-danger"><i class="fas fa-plus me-2"></i>Add Expense</a>
+</div>
+<div class="card"><div class="card-body"><table class="table">
+<thead><tr><th>Date</th><th>Amount</th><th>Category</th><th>Description</th><th>Actions</th></tr></thead>
+<tbody>
+@foreach (var item in Model) {
+<tr><td>@item.ExpenseDate.ToShortDateString()</td><td>@item.Amount.ToString("C")</td>
+<td>@item.CategoryName</td><td>@item.Description</td>
+<td><form method="post" asp-action="Delete" asp-route-id="@item.ExpenseId" class="d-inline">
+<button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td></tr>
+}
+</tbody>
+</table></div></div>

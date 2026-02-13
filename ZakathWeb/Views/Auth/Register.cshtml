@@ -1,0 +1,35 @@
+@model RegisterRequest
+@{ ViewData["Title"] = "Register"; }
+<div class="row justify-content-center"><div class="col-md-6"><div class="card shadow"><div class="card-body p-4">
+<h2 class="text-center mb-4">Create Account</h2>
+@if (ViewBag.Error != null) { <div class="alert alert-danger">@ViewBag.Error</div> }
+<form method="post">
+<div class="row">
+<div class="col-md-6 mb-3"><label class="form-label">Full Name *</label><input asp-for="FullName" class="form-control" required /></div>
+<div class="col-md-6 mb-3"><label class="form-label">Mobile Number *</label><input asp-for="MobileNumber" class="form-control" required /></div>
+</div>
+<div class="row">
+<div class="col-md-6 mb-3"><label class="form-label">Email</label><input asp-for="Email" type="email" class="form-control" /></div>
+<div class="col-md-6 mb-3"><label class="form-label">Date of Birth *</label><input asp-for="DateOfBirth" type="date" class="form-control" required /></div>
+</div>
+<div class="row">
+<div class="col-md-6 mb-3"><label class="form-label">Gender *</label>
+<select asp-for="Gender" class="form-select" required>
+<option value="">Select</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select></div>
+<div class="col-md-6 mb-3"><label class="form-label">City *</label><input asp-for="City" class="form-control" required /></div>
+</div>
+<div class="row">
+<div class="col-md-6 mb-3"><label class="form-label">State *</label><input asp-for="State" class="form-control" required /></div>
+<div class="col-md-6 mb-3"><label class="form-label">Country *</label><input asp-for="Country" class="form-control" required /></div>
+</div>
+<div class="row">
+<div class="col-md-6 mb-3"><label class="form-label">Password *</label><input asp-for="Password" type="password" class="form-control" required /></div>
+<div class="col-md-6 mb-3"><label class="form-label">Confirm Password *</label><input asp-for="ConfirmPassword" type="password" class="form-control" required /></div>
+</div>
+<button type="submit" class="btn btn-success w-100 mb-3">Register</button>
+<div class="text-center"><a href="/Auth/Login">Already have an account? Login</a></div>
+</form></div></div></div></div>

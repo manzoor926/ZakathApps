@@ -1,0 +1,27 @@
+# Flutter
+.dart_tool/
+.packages
+.pub-cache/
+build/
+
+# Android
+android/.gradle
+android/local.properties
+android/app/build/
+
+# iOS
+ios/Pods/
+ios/Runner.xcworkspace
+
+# .NET
+bin/
+obj/
+.vs/
+
+# Node / Web
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db

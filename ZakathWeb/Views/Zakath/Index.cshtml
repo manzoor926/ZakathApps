@@ -1,0 +1,31 @@
+@{ ViewData["Title"] = "Zakath"; }
+<div class="d-flex justify-content-between mb-4">
+<h1>Zakath Calculator</h1>
+<form method="post" asp-action="Calculate">
+<button type="submit" class="btn btn-success"><i class="fas fa-calculator me-2"></i>Calculate Zakath</button>
+</form>
+</div>
+@if (TempData["ZakathResult"] != null) {
+var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ZakathResult>(TempData["ZakathResult"].ToString());
+<div class="alert alert-info">
+<h4>Latest Calculation</h4>
+<p><strong>Total Wealth:</strong> @result.TotalWealth.ToString("C")</p>
+<p><strong>Nisab Threshold:</strong> @result.NisabThreshold.ToString("C")</p>
+<p><strong>Zakath Due:</strong> @result.ZakathDue.ToString("C")</p>
+<p><strong>Status:</strong> @(result.IsZakathApplicable ? "Zakath is due" : "Below Nisab")</p>
+</div>
+}
+<div class="card"><div class="card-body">
+<h5>Calculation History</h5>
+<table class="table">
+<thead><tr><th>Date</th><th>Total Wealth</th><th>Nisab</th><th>Zakath Due</th></tr></thead>
+<tbody>
+@foreach (var item in ViewBag.History as List<ZakathResult>) {
+<tr><td>@item.CalculationDate.ToShortDateString()</td>
+<td>@item.TotalWealth.ToString("C")</td>
+<td>@item.NisabThreshold.ToString("C")</td>
+<td>@item.ZakathDue.ToString("C")</td></tr>
+}
+</tbody>
+</table>
+</div></div>

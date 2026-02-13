@@ -1,0 +1,27 @@
+@{ ViewData["Title"] = "Dashboard"; }
+<h1 class="mb-4">Dashboard</h1>
+<div class="row g-4 mb-4">
+@if (ViewBag.Stats != null) {
+var stats = ViewBag.Stats as DashboardStats;
+<div class="col-md-3"><div class="card text-white bg-primary"><div class="card-body">
+<h6>Total Income</h6><h3>@stats.TotalIncome.ToString("C")</h3></div></div></div>
+<div class="col-md-3"><div class="card text-white bg-danger"><div class="card-body">
+<h6>Total Expense</h6><h3>@stats.TotalExpense.ToString("C")</h3></div></div></div>
+<div class="col-md-3"><div class="card text-white bg-info"><div class="card-body">
+<h6>Total Assets</h6><h3>@stats.TotalAssetValue.ToString("C")</h3></div></div></div>
+<div class="col-md-3"><div class="card text-white bg-success"><div class="card-body">
+<h6>Zakath Due</h6><h3>@stats.CurrentZakathDue.ToString("C")</h3></div></div></div>
+}
+</div>
+<div class="card"><div class="card-body">
+<h5 class="mb-3">Recent Transactions</h5>
+<table class="table table-hover">
+<thead><tr><th>Type</th><th>Amount</th><th>Date</th><th>Description</th></tr></thead>
+<tbody>
+@foreach (var tx in ViewBag.Transactions as List<RecentTransaction>) {
+<tr><td><span class="badge bg-@(tx.Type == "Income" ? "success" : tx.Type == "Expense" ? "danger" : "info")">@tx.Type</span></td>
+<td>@tx.Amount.ToString("C")</td><td>@tx.Date.ToShortDateString()</td><td>@tx.Description</td></tr>
+}
+</tbody>
+</table>
+</div></div>
